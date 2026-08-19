@@ -81,18 +81,18 @@ function ExperienceCategories() {
   const activeItems = data[activeTab]
 
   return (
-    <section id="categories" className="w-full py-24 px-6 max-w-7xl mx-auto border-b border-slate-200/60 overflow-hidden">
-      
+    <section id="categories" className="w-full pt-10 pb-24 px-6 max-w-7xl mx-auto border-b border-slate-200/60 overflow-hidden">
+
       {/* Header with Interactive Tabs */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
         <div>
           <span className="font-technical text-[10px] uppercase tracking-[0.2em] text-slate-400 font-semibold">
             Atmosphere Selection
           </span>
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-[#061022] mt-2">
-            Experience Categories
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-[#061022] mt-2 pb-2">
+            <span className="text-vista-blue">Experience</span> Categories
           </h2>
-          <p className="text-slate-600 text-sm font-sans mt-2 max-w-lg leading-relaxed">
+          <p className="text-black text-lg font-sans mt-2 max-w-lg leading-relaxed font-bold">
             Choose between exploring stunning global and cosmic coordinates, or celebrating life's milestones inside VISTA's sensory suites.
           </p>
         </div>
@@ -105,9 +105,8 @@ function ExperienceCategories() {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`relative px-6 py-2 rounded-full text-[10px] font-technical uppercase font-bold tracking-wider transition-all duration-300 ${
-                  isActive ? 'text-white' : 'text-slate-500 hover:text-slate-900'
-                }`}
+                className={`relative px-6 py-2 rounded-full text-[10px] font-technical uppercase font-bold tracking-wider transition-all duration-300 ${isActive ? 'text-white' : 'text-slate-500 hover:text-slate-900'
+                  }`}
               >
                 <span className="relative z-10">{tab}</span>
                 {isActive && (
@@ -132,11 +131,10 @@ function ExperienceCategories() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.35, ease: 'easeOut' }}
-            className={`grid grid-cols-1 sm:grid-cols-2 ${
-              activeTab === 'Explore' 
-                ? 'lg:grid-cols-5' 
-                : 'lg:grid-cols-4 max-w-5xl mx-auto'
-            } gap-8 md:gap-10`}
+            className={`grid grid-cols-1 sm:grid-cols-2 ${activeTab === 'Explore'
+              ? 'lg:grid-cols-5'
+              : 'lg:grid-cols-4 max-w-5xl mx-auto'
+              } gap-8 md:gap-10`}
           >
             {activeItems.map((item, idx) => {
               const IconComponent = item.icon
@@ -157,7 +155,7 @@ function ExperienceCategories() {
                 >
                   {/* Bottom offset background card layer (matching the reference photo) */}
                   <div className={`absolute inset-0 rounded-2xl ${item.bgClass} translate-x-2.5 translate-y-2.5 transition-transform duration-300 group-hover:translate-x-3.5 group-hover:translate-y-3.5`} />
-                  
+
                   {/* Top card containing details */}
                   <div className="relative p-6 rounded-2xl bg-white border border-slate-200/80 shadow-[0_4px_25px_rgba(0,0,0,0.015)] flex flex-col justify-between h-full group-hover:border-slate-300 transition-colors duration-300">
                     <div>
