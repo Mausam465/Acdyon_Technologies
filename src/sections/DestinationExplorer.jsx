@@ -60,7 +60,7 @@ function DestinationExplorer() {
         <div>
 
           <h2 className="text-3xl md:text-4xl font-display font-bold text-[#061022] mt-2">
-            Immersive Destinations
+            Immersive <span className='text-blue-600'>Destinations</span>
           </h2>
         </div>
 
@@ -102,11 +102,10 @@ function DestinationExplorer() {
           <div
             key={dest.title}
             onClick={() => setActiveDest(dest.title)}
-            className={`group rounded-3xl border bg-white overflow-hidden shadow-[0_4px_25px_rgba(0,0,0,0.02)] transition-all duration-300 flex flex-col justify-between cursor-pointer ${
-              activeDest === dest.title
+            className={`group rounded-3xl border bg-white overflow-hidden shadow-[0_4px_25px_rgba(0,0,0,0.02)] transition-all duration-300 flex flex-col justify-between cursor-pointer ${activeDest === dest.title
                 ? 'border-vista-blue ring-4 ring-vista-blue/10 shadow-lg'
                 : 'border-slate-200/80 hover:shadow-[0_15px_35px_rgba(0,0,0,0.05)] hover:border-slate-300'
-            }`}
+              }`}
           >
             {/* Visual Cover */}
             <div className="h-48 overflow-hidden relative">
@@ -140,11 +139,10 @@ function DestinationExplorer() {
                     e.stopPropagation();
                     setActiveDest(dest.title);
                   }}
-                  className={`btn-premium px-4 py-2 text-[12px] uppercase tracking-widest border rounded-full transition-all duration-300 ${
-                    activeDest === dest.title
+                  className={`btn-premium px-4 py-2 text-[12px] uppercase tracking-widest border rounded-full transition-all duration-300 ${activeDest === dest.title
                       ? 'bg-vista-blue text-white border-vista-blue'
                       : 'text-[#0052CC] border-blue-200 bg-blue-50 hover:bg-vista-blue hover:text-white hover:border-transparent'
-                  }`}
+                    }`}
                 >
                   {activeDest === dest.title ? 'Selected' : 'Reserve Suite'}
                 </button>

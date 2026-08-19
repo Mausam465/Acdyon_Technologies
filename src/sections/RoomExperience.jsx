@@ -38,32 +38,34 @@ function RoomExperience() {
 
   return (
     <section id="room-preview" className="w-full py-24 px-6 max-w-7xl mx-auto border-b border-slate-200/60">
-      
+
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
         <div>
-          <span className="font-technical text-[10px] uppercase tracking-[0.2em] text-slate-400 font-semibold">
-            Live Telemetry
-          </span>
+
           <h2 className="text-3xl md:text-4xl font-display font-bold text-[#061022] mt-2">
-            Immersive Chamber Preview
+            <span className="relative inline-block">
+              Immersive
+              <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-blue-600 rounded-full"></span>
+            </span>{' '}
+            <span className='text-blue-600'>Chamber Preview</span>
           </h2>
-          <p className="text-slate-600 text-sm font-sans mt-2 max-w-xl leading-relaxed">
+          <p className="text-black text-lg font-sans mt-2 max-w-xl leading-relaxed font-bold">
             Step inside the simulation. This live preview visualizes the environment currently active inside the VISTA sensory chamber.
           </p>
         </div>
       </div>
 
       {/* The Physical Room Container */}
-      <div className="w-full h-[600px] sm:h-[700px] rounded-[2.5rem] overflow-hidden relative shadow-[0_30px_60px_rgba(0,0,0,0.12)] border border-slate-200/50 bg-[#020408]">
-        
+      <div className="w-full h-[500px] sm:h-[550px] rounded-[2.5rem] overflow-hidden relative shadow-[0_30px_60px_rgba(0,0,0,0.12)] border border-slate-200/50 bg-[#020408]">
+
         {/* The Environment Projection (Curved Wall Effect) */}
         <div className="absolute inset-0 bg-[#020408]">
           <AnimatePresence>
-            <motion.img 
+            <motion.img
               key={currentRoomIndex}
-              src={activeRoom.image} 
-              alt={`${activeRoom.title} view`} 
+              src={activeRoom.image}
+              alt={`${activeRoom.title} view`}
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
@@ -87,7 +89,7 @@ function RoomExperience() {
 
         {/* Bottom Overlays Container */}
         <div className="absolute bottom-6 left-6 right-6 flex flex-col md:flex-row gap-4 items-end justify-between z-10">
-          
+
           {/* Bottom Left: Destination Info */}
           <div className="w-full md:w-5/12 p-6 rounded-3xl bg-black/40 backdrop-blur-md border border-white/10 shadow-2xl">
             <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mb-2">
@@ -103,7 +105,7 @@ function RoomExperience() {
             <span className="font-technical text-[10px] uppercase tracking-widest text-slate-400 font-semibold border-b border-white/10 pb-2">
               Environmental Systems
             </span>
-            
+
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-xl bg-white/10 text-teal-400">
