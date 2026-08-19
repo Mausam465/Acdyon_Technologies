@@ -226,11 +226,14 @@ function HowItWorks() {
       }
     }
 
+    // Clamp normalized distance to prevent far off-screen elements from blowing up container height
+    const clampedDistance = Math.min(Math.max(normalizedDistance, -1.6), 1.6)
+
     // Circular movement path calculations
-    const rotate = normalizedDistance * -15 // max 15 degrees pivot tilt
-    const y = Math.pow(Math.abs(normalizedDistance), 2) * 45 // curves down by max 45px at sides
-    const scale = Math.max(0.88, 1 - Math.abs(normalizedDistance) * 0.08)
-    const opacity = Math.max(0.4, 1 - Math.abs(normalizedDistance) * 0.6)
+    const rotate = clampedDistance * -12 // max 19 degrees pivot tilt
+    const y = Math.pow(Math.abs(clampedDistance), 2) * 18 // max 46px pull down at sides
+    const scale = Math.max(0.88, 1 - Math.abs(clampedDistance) * 0.08)
+    const opacity = Math.max(0, 1 - Math.abs(clampedDistance) * 0.75) // fades out completely off-screen
 
     return { rotate, y, scale, opacity }
   }
@@ -463,46 +466,78 @@ function HowItWorks() {
           How VISTA{' '}
           <span className="relative inline-block text-vista-blue pb-1">
             Works.
-            {/* Animated Hand-drawn underline */}
+            {/* Animated Hand-drawn underline with sharp ends */}
             <span className="absolute left-0 bottom-[-4px] w-full h-[6px] pointer-events-none">
               <svg className="w-full h-full overflow-visible" fill="none" viewBox="0 0 100 6" preserveAspectRatio="none">
                 <motion.path
                   d="M0,3 C30,1 70,5 100,2"
                   stroke="#0B52D6"
                   strokeWidth="3.5"
-                  strokeLinecap="round"
+                  strokeLinecap="butt"
                   initial={{ pathLength: 0 }}
                   whileInView={{ pathLength: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 1.8, ease: 'easeInOut' }}
                 />
               </svg>
-              
-              {/* Animating pen trailing the drawing line */}
+
+              {/* Animating butterfly trailing the drawing line */}
               <motion.div
-                initial={{ left: '0%', opacity: 0, rotate: -15 }}
+                initial={{ left: '0%', opacity: 0 }}
                 whileInView={{
                   left: ['0%', '100%'],
-                  opacity: [0, 1, 1, 0],
-                  y: [-12, -10, -12, -10]
+                  opacity: [0, 1, 1, 0]
                 }}
                 viewport={{ once: true }}
                 transition={{
                   duration: 1.8,
                   ease: 'easeInOut'
                 }}
-                className="absolute w-5 h-5 -translate-x-3 text-slate-800"
-                style={{ originX: 0, originY: 1 }}
+                className="absolute w-6 h-6 -translate-x-3 text-vista-blue"
+                style={{ bottom: '-10px', zIndex: 20 }}
               >
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full transform scale-x-[-1] rotate-[105deg]">
-                  <path d="M21 3a3 3 0 0 0-4.24 0L3 16.76V21h4.24L21 7.24A3 3 0 0 0 21 3z" fill="currentColor" />
-                  <path d="M16 8l3 3" stroke="#fff" strokeWidth="1.5" />
-                </svg>
+                {/* Fluttering & rotating container */}
+                <motion.div
+                  animate={{
+                    y: [-4, 4, -4],
+                    rotate: [-12, 12, -12]
+                  }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 0.45,
+                    ease: 'easeInOut'
+                  }}
+                  className="w-full h-full flex items-center justify-center"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full overflow-visible">
+                    {/* Left Wing (flapping) */}
+                    <motion.path
+                      d="M12,12 C10,4 2,6 2,12 C2,16 6,18 12,14"
+                      fill="#0B52D6"
+                      opacity="0.85"
+                      style={{ originX: '12px', originY: '12px' }}
+                      animate={{ scaleX: [1, 0.15, 1] }}
+                      transition={{ repeat: Infinity, duration: 0.16, ease: 'linear' }}
+                    />
+                    {/* Right Wing (flapping) */}
+                    <motion.path
+                      d="M12,12 C14,4 22,6 22,12 C22,16 18,18 12,14"
+                      fill="#3B82F6"
+                      opacity="0.95"
+                      style={{ originX: '12px', originY: '12px' }}
+                      animate={{ scaleX: [1, 0.15, 1] }}
+                      transition={{ repeat: Infinity, duration: 0.16, ease: 'linear' }}
+                    />
+                    {/* Antennae & Body */}
+                    <path d="M11.5,8 C11.5,8 11,5 9,4 M12.5,8 C12.5,8 13,5 15,4" stroke="#1E293B" strokeWidth="1" strokeLinecap="round" />
+                    <rect x="11.2" y="7" width="1.6" height="10" rx="0.8" fill="#1E293B" />
+                  </svg>
+                </motion.div>
               </motion.div>
             </span>
           </span>
         </h2>
-        <p className="text-black text-lg font-sans leading-relaxed font-bold">
+        <p className="text-black text-lg font-sans leading-relaxed font-semibold">
           Embarking on a customized sensory retreat is seamless. Scroll horizontally below to follow the physical stages of your visit.
         </p>
       </div>
