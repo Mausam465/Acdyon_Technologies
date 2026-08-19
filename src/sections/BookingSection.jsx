@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Calendar as CalendarIcon, Clock, CheckCircle, Info } from 'lucide-react'
+import { Calendar as CalendarIcon, Clock, CheckCircle, Info, Sparkles } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 // Generate next 7 days dynamically
 const getNext7Days = () => {
@@ -7,7 +8,7 @@ const getNext7Days = () => {
   const today = new Date();
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  
+
   for (let i = 0; i < 7; i++) {
     const nextDate = new Date(today);
     nextDate.setDate(today.getDate() + i);
@@ -42,18 +43,18 @@ function BookingSection() {
 
   return (
     <section id="booking" className="w-full py-24 px-6 max-w-7xl mx-auto border-b border-slate-200/60">
-      <div className="flex flex-col lg:flex-row gap-12 items-stretch">
-        
+      <div className="flex flex-col lg:flex-row gap-12 items-start">
+
         {/* Booking Info */}
-        <div className="w-full lg:w-5/12 flex flex-col justify-between space-y-6">
+        <div className="w-full lg:w-5/12 flex flex-col space-y-12 sticky top-32">
           <div className="space-y-4">
-            <span className="font-technical text-[10px] uppercase tracking-[0.2em] text-slate-400 font-semibold block">
+            <span className="font-technical text-[10px] uppercase tracking-[0.2em] text-slate-600 font-semibold block">
               Reservation System
             </span>
             <h2 className="text-3xl md:text-4xl font-display font-bold text-[#061022]">
               Reserve Your <span className="text-blue-600">Custom</span> Chamber
             </h2>
-            <p className="text-slate-600 text-lg font-sans leading-relaxed">
+            <p className="text-slate-600 text-lg font-sans leading-relaxed font-bold">
               Book your immersive session directly online. All reservations include complete private access to your chosen sensory suite, loaded with your custom configuration.
             </p>
           </div>
@@ -63,10 +64,10 @@ function BookingSection() {
               <CalendarIcon className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-technical uppercase font-bold text-slate-800 tracking-wider">
+              <h4 className="text-sm font-technical uppercase font-bold text-slate-800 tracking-wider">
                 Support Helpline
               </h4>
-              <p className="text-xs text-slate-600 font-sans mt-1.5 leading-relaxed">
+              <p className="text-xs text-black font-sans mt-1.5 leading-relaxed font-semibold">
                 Looking for corporate packages or private party rentals? Contact our scheduling desk at <span className="font-semibold text-vista-blue cursor-pointer hover:underline">events@vista.center</span>.
               </p>
             </div>
@@ -74,11 +75,11 @@ function BookingSection() {
         </div>
 
         {/* Booking Form Card */}
-        <div className="w-full lg:w-7/12 p-8 md:p-10 rounded-[2.5rem] border border-slate-200/80 bg-white/80 backdrop-blur shadow-[0_15px_50px_rgba(0,0,0,0.03)] flex flex-col justify-center relative overflow-hidden">
-          
+        <div className="w-full lg:w-7/12 p-8 md:p-10 rounded-[2.5rem] border border-slate-200/80 bg-white/80 backdrop-blur shadow-[0_15px_50px_rgba(0,0,0,0.03)] flex flex-col justify-center relative overflow-hidden min-h-[640px]">
+
           {!booked ? (
             <form onSubmit={handleSubmit} className="space-y-8">
-              
+
               {/* Select Suite */}
               <div className="space-y-3">
                 <label className="text-[10px] font-technical uppercase tracking-widest font-bold text-slate-700 block">
@@ -90,9 +91,9 @@ function BookingSection() {
                     onChange={(e) => setSuite(e.target.value)}
                     className="w-full px-5 py-4 text-sm rounded-xl border border-slate-200 bg-white/90 focus:outline-none focus:border-vista-blue focus:ring-4 focus:ring-vista-blue/10 transition-all font-sans text-slate-800 cursor-pointer shadow-sm appearance-none"
                   >
-                    <option value="Solo Escape Suite">Solo Escape Suite (Capacity: 1 Guest - $75/hr)</option>
-                    <option value="Premium Immersive Suite">Premium Immersive Suite (Capacity: 4 Guests - $110/hr)</option>
-                    <option value="VISTA Duo Sanctuary">VISTA Duo Sanctuary (Capacity: 2 Guests - $95/hr)</option>
+                    <option value="Solo Escape Suite">Solo Escape Suite (Capacity: 1 Guest)</option>
+                    <option value="Premium Immersive Suite">Premium Immersive Suite (Capacity: 4 Guests )</option>
+                    <option value="VISTA Duo Sanctuary">VISTA Duo Sanctuary (Capacity: 2 Guests )</option>
                   </select>
                   <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none">
                     <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -114,11 +115,10 @@ function BookingSection() {
                       key={d.fullStr}
                       type="button"
                       onClick={() => setSelectedDateStr(d.fullStr)}
-                      className={`py-3 rounded-xl border text-center flex flex-col items-center justify-center transition-all duration-300 ${
-                        selectedDateStr === d.fullStr
-                          ? 'bg-[#061022] text-white border-[#061022] shadow-md transform -translate-y-0.5'
-                          : 'border-slate-200 bg-white/60 text-slate-600 hover:bg-white hover:border-slate-300 hover:shadow-sm'
-                      }`}
+                      className={`py-3 rounded-xl border text-center flex flex-col items-center justify-center transition-all duration-300 ${selectedDateStr === d.fullStr
+                        ? 'bg-[#061022] text-white border-[#061022] shadow-md transform -translate-y-0.5'
+                        : 'border-slate-200 bg-white/60 text-slate-600 hover:bg-white hover:border-slate-300 hover:shadow-sm'
+                        }`}
                     >
                       <span className={`text-[9px] font-technical uppercase tracking-wider block ${selectedDateStr === d.fullStr ? 'text-slate-300' : 'text-slate-400'}`}>
                         {d.day}
@@ -141,11 +141,10 @@ function BookingSection() {
                       key={slot}
                       type="button"
                       onClick={() => setSelectedSlot(slot)}
-                      className={`py-2.5 rounded-lg border text-center text-[11px] font-technical font-semibold transition-all duration-300 ${
-                        selectedSlot === slot
-                          ? 'border-vista-blue bg-blue-50 text-vista-blue shadow-sm ring-1 ring-vista-blue/50'
-                          : 'border-slate-200 bg-white/60 text-slate-500 hover:bg-white hover:border-slate-300 hover:shadow-sm'
-                      }`}
+                      className={`py-2.5 rounded-lg border text-center text-[11px] font-technical font-semibold transition-all duration-300 ${selectedSlot === slot
+                        ? 'border-vista-blue bg-blue-50 text-vista-blue shadow-sm ring-1 ring-vista-blue/50'
+                        : 'border-slate-200 bg-white/60 text-slate-500 hover:bg-white hover:border-slate-300 hover:shadow-sm'
+                        }`}
                     >
                       {slot}
                     </button>
@@ -164,33 +163,69 @@ function BookingSection() {
               </div>
             </form>
           ) : (
-            <div className="text-center py-12 space-y-5 animate-in fade-in zoom-in duration-500">
-              <div className="w-20 h-20 bg-emerald-50 border-2 border-emerald-100 rounded-full flex items-center justify-center mx-auto text-emerald-500 shadow-sm">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="text-center py-10 space-y-6"
+            >
+              <motion.div 
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", delay: 0.2, bounce: 0.5 }}
+                className="w-20 h-20 bg-emerald-50 border-2 border-emerald-100 rounded-full flex items-center justify-center mx-auto text-emerald-500 shadow-sm relative"
+              >
                 <CheckCircle className="w-10 h-10" />
-              </div>
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.6 }}
+                  className="absolute -top-2 -right-2 text-amber-400"
+                >
+                  <Sparkles className="w-6 h-6" />
+                </motion.div>
+              </motion.div>
+              
               <div>
-                <h3 className="font-display font-bold text-2xl text-[#061022] mb-2">
-                  Sensory Chamber Booked!
+                <h3 className="font-display font-bold text-2xl text-[#061022] mb-3">
+                  Demo Reservation Complete
                 </h3>
-                <p className="text-sm text-slate-600 font-sans max-w-sm mx-auto leading-relaxed">
-                  Your reservation for the <span className="font-bold text-slate-800">{suite}</span> on <span className="font-bold text-slate-800">{selectedDateObj?.month} {selectedDateObj?.num}</span> at <span className="font-bold text-slate-800">{selectedSlot}</span> has been confirmed.
-                </p>
+                <div className="bg-slate-50 border border-slate-100 rounded-2xl p-5 inline-block mx-auto max-w-sm w-full shadow-inner">
+                  <div className="space-y-2 text-left">
+                    <div className="flex justify-between border-b border-slate-200 pb-2">
+                      <span className="text-xs font-technical uppercase text-slate-400">Experience</span>
+                      <span className="text-xs font-semibold text-slate-800">{suite}</span>
+                    </div>
+                    <div className="flex justify-between border-b border-slate-200 pb-2 pt-1">
+                      <span className="text-xs font-technical uppercase text-slate-400">Date</span>
+                      <span className="text-xs font-semibold text-slate-800">{selectedDateObj?.month} {selectedDateObj?.num}, {selectedDateObj?.year}</span>
+                    </div>
+                    <div className="flex justify-between pt-1">
+                      <span className="text-xs font-technical uppercase text-slate-400">Time</span>
+                      <span className="text-xs font-semibold text-vista-blue">{selectedSlot}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 inline-block mt-4 text-left">
-                <p className="text-xs text-slate-500 font-sans flex items-start gap-2">
+
+              <div className="p-4 bg-blue-50/50 rounded-2xl border border-blue-100/50 inline-block text-left max-w-sm">
+                <p className="text-xs text-slate-600 font-sans flex items-start gap-2 leading-relaxed">
                   <Info className="w-4 h-4 text-vista-blue shrink-0 mt-0.5" />
-                  <span>A digital wristband pass has been sent to your email. Please arrive 15 minutes before your scheduled start time.</span>
+                  <span>
+                    <strong>Frontend Demo Note:</strong> This is a UI concept. No reservation was actually stored on a server. However, please arrive at the VISTA center 15 minutes prior to your reserved experience.
+                  </span>
                 </p>
               </div>
-              <div className="pt-6">
+
+              <div className="pt-4">
                 <button
                   onClick={() => setBooked(false)}
-                  className="inline-flex items-center gap-1.5 px-6 py-3 border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 rounded-xl text-[10px] uppercase tracking-widest font-bold transition-all shadow-sm hover:shadow"
+                  className="inline-flex items-center gap-1.5 px-6 py-3 border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 rounded-xl text-[10px] uppercase tracking-widest font-bold transition-all shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-md"
                 >
-                  Book Another Slot
+                  Book Another Demo
                 </button>
               </div>
-            </div>
+            </motion.div>
           )}
         </div>
 
