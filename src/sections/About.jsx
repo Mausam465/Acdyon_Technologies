@@ -39,10 +39,10 @@ function About() {
   return (
     <section id="about" className="w-full py-20 px-6 max-w-7xl mx-auto border-b border-slate-200/60 scroll-mt-20">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        
+
         {/* Left Column: Descriptive Content & Step List */}
         <div className="lg:col-span-7 space-y-8">
-          
+
           {/* Header */}
           <div className="space-y-4">
             <span className="inline-block px-3 py-1 text-[9px] font-technical uppercase font-bold tracking-widest bg-blue-500/10 text-vista-blue rounded-full">
@@ -52,7 +52,7 @@ function About() {
               A physical sanctuary. <br />
               <span className="text-vista-blue">Endless sensory realities.</span>
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg font-sans leading-relaxed max-w-2xl">
+            <p className="text-black text-base sm:text-lg font-sans leading-relaxed max-w-2xl">
               VISTA is not virtual reality. It is a state-of-the-art physical experience center designed to transport you without headsets. We recreate worlds inside specialized chambers through synchronized sight, sound, scent, climate, and breeze.
             </p>
           </div>
@@ -66,39 +66,34 @@ function About() {
               const isDimmed = isAnyHovered && !isHovered
 
               return (
-                <div 
+                <div
                   key={step.num}
                   onMouseEnter={() => setHoveredStep(step.num)}
                   onMouseLeave={() => setHoveredStep(null)}
-                  className={`flex gap-4 p-5 rounded-2xl border transition-all duration-300 ${
-                    isHovered
-                      ? '-translate-y-1.5 bg-white border-slate-200 shadow-[0_15px_30px_rgba(11,82,214,0.06)] opacity-100 scale-[1.015]'
-                      : isDimmed
+                  className={`flex gap-4 p-5 rounded-2xl border transition-all duration-300 ${isHovered
+                    ? '-translate-y-1.5 bg-white border-slate-200 shadow-[0_15px_30px_rgba(11,82,214,0.06)] opacity-100 scale-[1.015]'
+                    : isDimmed
                       ? 'bg-white/30 border-slate-100/50 opacity-40 scale-[0.98] blur-[0.3px]'
                       : 'bg-white/50 border-slate-100 opacity-90 scale-100'
-                  }`}
+                    }`}
                 >
-                  <div className={`flex-shrink-0 w-12 h-12 rounded-xl border flex items-center justify-center ${step.color} transition-all duration-300 ${
-                    isHovered ? 'scale-110 shadow-sm border-transparent' : 'scale-100'
-                  }`}>
+                  <div className={`flex-shrink-0 w-12 h-12 rounded-xl border flex items-center justify-center ${step.color} transition-all duration-300 ${isHovered ? 'scale-110 shadow-sm border-transparent' : 'scale-100'
+                    }`}>
                     <IconComp className="w-5 h-5" />
                   </div>
                   <div className="space-y-1 transition-all duration-300">
                     <div className="flex items-center gap-2">
-                      <span className={`font-technical text-[10px] font-bold transition-colors duration-300 ${
-                        isHovered ? 'text-vista-blue' : 'text-slate-400'
-                      }`}>
+                      <span className={`font-technical text-[10px] font-bold transition-colors duration-300 ${isHovered ? 'text-vista-blue' : 'text-slate-400'
+                        }`}>
                         {step.num}
                       </span>
-                      <h3 className={`font-display font-semibold text-base transition-colors duration-300 ${
-                        isHovered ? 'text-vista-blue font-bold' : 'text-[#061022]'
-                      }`}>
+                      <h3 className={`font-display font-semibold text-base transition-colors duration-300 ${isHovered ? 'text-vista-blue font-bold' : 'text-[#061022]'
+                        }`}>
                         {step.title}
                       </h3>
                     </div>
-                    <p className={`text-xs font-sans leading-relaxed transition-colors duration-300 ${
-                      isHovered ? 'text-slate-800 font-medium' : 'text-slate-500'
-                    }`}>
+                    <p className={`text-xs font-sans leading-relaxed transition-colors duration-300 ${isHovered ? 'text-black font-bold' : 'text-black'
+                      }`}>
                       {step.desc}
                     </p>
                   </div>
@@ -110,12 +105,12 @@ function About() {
 
         {/* Right Column: Premium Visual & Technology HUD Card */}
         <div className="lg:col-span-5 relative">
-          
+
           {/* Card Outer glow decoration */}
           <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-tr from-blue-500/10 to-teal-500/10 blur-xl pointer-events-none -z-10"></div>
-          
+
           <div className="relative rounded-[2rem] overflow-hidden border border-slate-200/80 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.04)]">
-            
+
             {/* Main Center Image */}
             <div className="h-[350px] sm:h-[450px] w-full relative overflow-hidden">
               <img

@@ -19,11 +19,11 @@ function App() {
       <main className="flex-grow">
         <Hero />
         <About />
+        <HowItWorks />
         <ExperienceCategories />
         <DestinationExplorer />
         <ExperienceConfigurator />
         <RoomExperience />
-        <HowItWorks />
         <BookingSection />
         <CelebrationSection />
         <FinalCTA />
