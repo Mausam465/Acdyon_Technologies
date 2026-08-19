@@ -1,130 +1,120 @@
 import React from 'react'
-import { Check, ShieldAlert } from 'lucide-react'
-
-const suites = [
-  {
-    name: 'Solo Escape Suite',
-    capacity: '1 Guest',
-    price: '$75',
-    period: 'hour',
-    desc: 'Perfect for individual sensory retreats, somatic breathing sessions, or creative focus.',
-    features: [
-      '180° Curved HD Projections',
-      'Dual Aroma Dispersion',
-      'Standard Ambient Climate Valves',
-      'Spatial Headphones Integration'
-    ],
-    accent: false
-  },
-  {
-    name: 'Premium Immersive Suite',
-    capacity: 'Up to 4 Guests',
-    price: '$110',
-    period: 'hour',
-    desc: 'Our flagship suite featuring full wraps, scent streams, and synchronized motion triggers.',
-    features: [
-      '360° Wall & Floor Projections',
-      'Quad Spatial Surround Acoustics',
-      'Thermal draft air engine system',
-      'Advanced Aroma Nebulizer',
-      'Special Anniversary lighting triggers'
-    ],
-    accent: true
-  },
-  {
-    name: 'VISTA Duo Sanctuary',
-    capacity: '2 Guests',
-    price: '$95',
-    period: 'hour',
-    desc: 'Specially engineered for cosmic date nights and private shared retreats.',
-    features: [
-      '270° Panoramic Wall Projections',
-      'Double Lounger Seats',
-      'Custom Scent Selection',
-      'Subtle Low-candle simulator glow'
-    ],
-    accent: false
-  }
-]
+import { Thermometer, Wind, Music, Eye, Droplets } from 'lucide-react'
 
 function RoomExperience() {
+  // Hardcoded data representing "Deep Forest" for now
+  const activeRoom = {
+    title: 'Deep Forest',
+    description: 'Deep green pine forest canopy, woodland birds singing, earthy damp soil scent, and light moisture mist.',
+    image: 'https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=80',
+    telemetry: {
+      climate: '18°C, Cool & Misty',
+      scent: 'Pine & Petrichor',
+      audio: 'Ambient Surround'
+    }
+  }
+
   return (
-    <section id="rooms" className="w-full py-24 px-6 max-w-7xl mx-auto border-b border-slate-200/60">
-      <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-        <span className="font-technical text-[10px] uppercase tracking-[0.2em] text-slate-400 font-semibold block">
-          Immersive Facilities
-        </span>
-        <h2 className="text-3xl md:text-4xl font-display font-bold text-[#061022]">
-          Immersive Sensory Suites
-        </h2>
-        <p className="text-slate-600 text-sm font-sans leading-relaxed">
-          Select the ideal chamber package for your retreat or event. Each suite is sound-isolated and fully customizable.
-        </p>
+    <section id="room-preview" className="w-full py-24 px-6 max-w-7xl mx-auto border-b border-slate-200/60">
+      
+      {/* Section Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <span className="font-technical text-[10px] uppercase tracking-[0.2em] text-slate-400 font-semibold">
+            Live Telemetry
+          </span>
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-[#061022] mt-2">
+            Immersive Chamber Preview
+          </h2>
+          <p className="text-slate-600 text-sm font-sans mt-2 max-w-xl leading-relaxed">
+            Step inside the simulation. This live preview visualizes the environment currently active inside the VISTA sensory chamber.
+          </p>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {suites.map((suite) => (
-          <div
-            key={suite.name}
-            className={`rounded-[2.5rem] p-8 md:p-10 flex flex-col justify-between transition-all duration-300 ${
-              suite.accent
-                ? 'bg-[#061022] text-white border-2 border-transparent shadow-[0_20px_50px_rgba(9,24,44,0.15)] md:scale-105 relative z-10'
-                : 'bg-white text-slate-900 border border-slate-200/80 shadow-[0_4px_25px_rgba(0,0,0,0.02)] hover:border-slate-300'
-            }`}
-          >
-            <div>
-              {/* Header */}
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <h3 className={`font-display font-semibold text-lg ${suite.accent ? 'text-white' : 'text-[#061022]'}`}>
-                    {suite.name}
-                  </h3>
-                  <span className={`text-[10px] font-technical uppercase font-bold tracking-wider ${suite.accent ? 'text-blue-300' : 'text-slate-400'}`}>
-                    CAPACITY: {suite.capacity}
-                  </span>
-                </div>
-                {suite.accent && (
-                  <span className="px-2.5 py-0.5 rounded text-[8px] font-technical uppercase font-bold tracking-widest bg-vista-blue text-white">
-                    Popular
-                  </span>
-                )}
-              </div>
+      {/* The Physical Room Container */}
+      <div className="w-full h-[600px] sm:h-[700px] rounded-[2.5rem] overflow-hidden relative shadow-[0_30px_60px_rgba(0,0,0,0.12)] border border-slate-200/50 bg-[#020408]">
+        
+        {/* The Environment Projection (Curved Wall Effect) */}
+        <div className="absolute inset-0">
+          <img 
+            src={activeRoom.image} 
+            alt={activeRoom.title} 
+            className="w-full h-full object-cover transition-all duration-1000 scale-105"
+            style={{
+              clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', // Will add perspective if needed
+            }}
+          />
+          {/* Gradients to simulate physical room depth and corners */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#020408] via-transparent to-[#020408]/40 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#020408]/60 via-transparent to-[#020408]/60" />
+        </div>
 
-              {/* Price */}
-              <div className="mb-6 flex items-baseline gap-1">
-                <span className="text-4xl font-display font-bold">{suite.price}</span>
-                <span className={`text-xs ${suite.accent ? 'text-slate-300' : 'text-slate-500'}`}>/ {suite.period}</span>
-              </div>
+        {/* Top Left: Live Status Indicator */}
+        <div className="absolute top-6 left-6 z-10 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 shadow-lg">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping absolute" />
+          <span className="w-2 h-2 rounded-full bg-emerald-500 relative" />
+          <span className="font-technical text-[9px] uppercase tracking-[0.15em] text-white font-bold ml-1">
+            Chamber Active
+          </span>
+        </div>
 
-              {/* Desc */}
-              <p className={`text-xs font-sans leading-relaxed mb-8 ${suite.accent ? 'text-slate-300' : 'text-slate-600'}`}>
-                {suite.desc}
-              </p>
-
-              {/* Features List */}
-              <ul className="space-y-4 mb-8">
-                {suite.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2.5 text-xs font-sans">
-                    <Check className={`w-4 h-4 shrink-0 mt-0.5 ${suite.accent ? 'text-blue-400' : 'text-vista-blue'}`} />
-                    <span className={suite.accent ? 'text-slate-200' : 'text-slate-700'}>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <a
-              href="#booking"
-              className={`btn-premium w-full text-center py-3.5 rounded-xl text-xs uppercase tracking-widest font-semibold transition-all duration-300 block ${
-                suite.accent
-                  ? 'bg-vista-blue hover:bg-vista-blueDark text-white'
-                  : 'border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 hover:border-slate-300'
-              }`}
-            >
-              Reserve Suite
-            </a>
+        {/* Bottom Overlays Container */}
+        <div className="absolute bottom-6 left-6 right-6 flex flex-col md:flex-row gap-4 items-end justify-between z-10">
+          
+          {/* Bottom Left: Destination Info */}
+          <div className="w-full md:w-5/12 p-6 rounded-3xl bg-black/40 backdrop-blur-md border border-white/10 shadow-2xl">
+            <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mb-2">
+              {activeRoom.title}
+            </h3>
+            <p className="text-sm font-sans text-slate-300 leading-relaxed">
+              {activeRoom.description}
+            </p>
           </div>
-        ))}
+
+          {/* Bottom Right: Environment Telemetry */}
+          <div className="w-full md:w-auto p-6 rounded-3xl bg-black/40 backdrop-blur-md border border-white/10 shadow-2xl flex flex-col gap-4 min-w-[300px]">
+            <span className="font-technical text-[10px] uppercase tracking-widest text-slate-400 font-semibold border-b border-white/10 pb-2">
+              Environmental Systems
+            </span>
+            
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-xl bg-white/10 text-teal-400">
+                  <Thermometer className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="block text-[9px] font-technical uppercase tracking-wider text-slate-400">Climate Control</span>
+                  <span className="block text-sm font-semibold text-white font-sans">{activeRoom.telemetry.climate}</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-xl bg-white/10 text-pink-400">
+                  <Droplets className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="block text-[9px] font-technical uppercase tracking-wider text-slate-400">Aroma Dispersion</span>
+                  <span className="block text-sm font-semibold text-white font-sans">{activeRoom.telemetry.scent}</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-xl bg-white/10 text-indigo-400">
+                  <Music className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="block text-[9px] font-technical uppercase tracking-wider text-slate-400">Acoustic Field</span>
+                  <span className="block text-sm font-semibold text-white font-sans">{activeRoom.telemetry.audio}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
+
     </section>
   )
 }
