@@ -40,7 +40,7 @@ function CelebrationSection() {
             Celebrations & Custom Events
           </h2>
         </div>
-        <p className="text-slate-600 text-sm max-w-md mt-4 md:mt-0 font-sans leading-relaxed">
+        <p className="text-black text-sm max-w-md mt-4 md:mt-0 font-sans leading-relaxed font-bold">
           Host private gatherings inside a dedicated room. We customize our projection feeds and climate triggers to fit your theme.
         </p>
       </div>
@@ -57,10 +57,10 @@ function CelebrationSection() {
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center border mb-6 ${event.color}`}>
                   <IconComp className="w-5 h-5" />
                 </div>
-                <h3 className="font-display font-semibold text-base text-[#061022] mb-2 leading-tight">
+                <h3 className="font-display font-bold text-base text-[#061022] mb-2 leading-tight">
                   {event.title}
                 </h3>
-                <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                <p className="text-sm text-black font-sans font-semibold leading-relaxed">
                   {event.desc}
                 </p>
               </div>
