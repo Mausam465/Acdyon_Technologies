@@ -7,12 +7,22 @@ export default {
   theme: {
     extend: {
       colors: {
+        slate: {
+          600: '#2D3748', // Exact dark charcoal paragraph from screenshot
+        },
         vista: {
-          // Brand Colors
+          // Brand Colors (Dark Theme - legacy)
           black: '#020408',      // Deep void background
           dark: '#050811',       // Base backdrop
           panel: '#090E1A',      // Premium container fill
           border: '#161F30',     // Subtle elegant borders
+
+          // Brand Colors (Light Theme)
+          lightBg: '#F8FAFC',
+          lightPanel: '#FFFFFF',
+          lightBorder: '#E2E8F0',
+          blue: '#0B52D6',       // Vibrant royal blue accent matching screenshot
+          blueDark: '#0044CC',   // Darker shade for hover states
           
           // Environment / Ambient Glows (calm and sophisticated)
           nature: '#0D9488',     // Calm Teal (Forests, Oceans)
@@ -21,9 +31,9 @@ export default {
           sunset: '#D97706',     // Warm Amber (Sunsets, Sand, Autumn)
           
           // Text states
-          primary: '#F8FAFC',    // Off-white for high readability
-          secondary: '#94A3B8',  // Cool gray for secondary text
-          muted: '#64748B',      // Low-contrast details
+          primary: '#061022',    // Exact very dark navy black heading from screenshot
+          secondary: '#2D3748',  // Exact slate body text
+          muted: '#64748B',      // Low-contrast slate for details
         }
       },
       fontFamily: {

@@ -13,7 +13,7 @@ import Footer from './sections/Footer'
 
 function App() {
   return (
-    <div className="min-h-screen bg-vista-dark text-white flex flex-col selection:bg-emerald-500/30 selection:text-emerald-300">
+    <div className="min-h-screen bg-gradient-to-tr from-[#F0F6FE] via-[#F8FAFC] to-[#E8F1FC] text-slate-900 flex flex-col selection:bg-blue-500/20 selection:text-blue-700">
       <Navbar />
       <main className="flex-grow">
         <Hero />
