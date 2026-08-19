@@ -8,8 +8,9 @@ export const exploreExperiences = [
       scent: 'Street food spices, light floral notes',
       audio: 'Ambient acoustic waves, distant city bustle'
     },
-    visualAsset: '/assets/experiences/korea-summer.jpg',
-    modes: ['Solo', 'Group', 'Guided']
+    visualAsset: 'https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=1200&q=80',
+    modes: ['Solo', 'Group', 'Guided'],
+    envModes: ['Summer', 'Night', 'Rain']
   },
   {
     id: 'himalayan-mountains',
@@ -20,8 +21,9 @@ export const exploreExperiences = [
       scent: 'Pine, fresh snow, crisp ozone',
       audio: 'Howling wind, distant singing bowls'
     },
-    visualAsset: '/assets/experiences/himalayan-mountains.jpg',
-    modes: ['Meditative', 'Guided Journey']
+    visualAsset: 'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=1200&q=80',
+    modes: ['Meditative', 'Guided Journey'],
+    envModes: ['Winter', 'Sunrise', 'Blizzard']
   },
   {
     id: 'tropical-sunset',
@@ -32,8 +34,9 @@ export const exploreExperiences = [
       scent: 'Coconut, sea salt, tropical flowers',
       audio: 'Crashing waves, distant seagulls'
     },
-    visualAsset: '/assets/experiences/tropical-sunset.jpg',
-    modes: ['Relaxation', 'Couples', 'Solo']
+    visualAsset: 'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1200&q=80',
+    modes: ['Relaxation', 'Couples', 'Solo'],
+    envModes: ['Sunset', 'Midday', 'Storm']
   },
   {
     id: 'forest-rain',
@@ -44,8 +47,9 @@ export const exploreExperiences = [
       scent: 'Petrichor, pine needles, wet earth',
       audio: 'Rain falling on leaves, distant thunder'
     },
-    visualAsset: '/assets/experiences/forest-rain.jpg',
-    modes: ['Sleep', 'Focus', 'Meditative']
+    visualAsset: 'https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=80',
+    modes: ['Sleep', 'Focus', 'Meditative'],
+    envModes: ['Rain', 'Morning', 'Night']
   },
   {
     id: 'northern-lights',
@@ -56,7 +60,8 @@ export const exploreExperiences = [
       scent: 'Arctic ice, clean air',
       audio: 'Ethereal cosmic synths, low frequency rumbles'
     },
-    visualAsset: '/assets/experiences/northern-lights.jpg',
-    modes: ['Immersive', 'Solo', 'Sleep']
+    visualAsset: 'https://images.unsplash.com/photo-1483168527879-c66136b56105?auto=format&fit=crop&w=1200&q=80',
+    modes: ['Immersive', 'Solo', 'Sleep'],
+    envModes: ['Night', 'Midnight', 'Dawn']
   }
 ];

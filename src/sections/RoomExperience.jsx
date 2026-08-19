@@ -1,33 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import { Thermometer, Wind, Music, Eye, Droplets } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { exploreExperiences } from '../data/exploreExperiences'
 
 function RoomExperience() {
   const [currentRoomIndex, setCurrentRoomIndex] = useState(0)
 
-  // Hardcoded preview rooms to cycle through
-  const previewRooms = [
-    {
-      title: 'Deep Forest',
-      description: 'Deep green pine forest canopy, woodland birds singing, earthy damp soil scent, and light moisture mist.',
-      image: 'https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=80',
-      telemetry: { climate: '18°C, Cool & Misty', scent: 'Pine & Petrichor', audio: 'Ambient Surround' }
+  // Use destination data dynamically
+  const previewRooms = exploreExperiences.map(exp => ({
+    title: exp.title,
+    description: exp.description,
+    image: exp.visualAsset,
+    telemetry: {
+      climate: exp.environment.climate,
+      scent: exp.environment.scent,
+      audio: exp.environment.audio
     },
-    {
-      title: 'Korea Spring',
-      description: 'Soft pink cherry blossom petals falling gently around you with a mild spring breeze and sweet floral scent.',
-      image: 'https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=1200&q=80',
-      telemetry: { climate: '22°C, Spring Breeze', scent: 'Cherry Blossom & Greenery', audio: 'Gentle Wind & Strings' }
-    },
-    {
-      title: 'Manali Mountains',
-      description: 'Crisp alpine winds, surrounding snowy peak projections, and panoramic soundscapes at the top of the Himalayas.',
-      image: 'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=1200&q=80',
-      telemetry: { climate: '5°C, Cold & Fresh', scent: 'Pine & Crisp Ozone', audio: 'Howling Wind' }
-    }
-  ]
+    envModes: exp.envModes || ['Standard']
+  }))
 
   const activeRoom = previewRooms[currentRoomIndex]
+  const [activeMode, setActiveMode] = useState(activeRoom.envModes[0])
+
+  useEffect(() => {
+    setActiveMode(activeRoom.envModes[0])
+  }, [currentRoomIndex, activeRoom.envModes])
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -85,6 +82,21 @@ function RoomExperience() {
           <span className="font-technical text-[9px] uppercase tracking-[0.15em] text-white font-bold ml-1">
             Chamber Active
           </span>
+        </div>
+
+        {/* Top Right: Experience Mode Controls */}
+        <div className="absolute top-6 right-6 z-10 flex items-center gap-2 p-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 shadow-lg">
+          {activeRoom.envModes.map((mode) => (
+            <button
+              key={mode}
+              onClick={() => setActiveMode(mode)}
+              className={`px-4 py-1.5 rounded-full text-[10px] font-technical uppercase font-bold tracking-wider transition-all duration-300 ${
+                activeMode === mode ? 'bg-vista-blue text-white' : 'text-slate-300 hover:text-white hover:bg-white/10'
+              }`}
+            >
+              {mode}
+            </button>
+          ))}
         </div>
 
         {/* Bottom Overlays Container */}
