@@ -64,7 +64,7 @@ function CelebrationSection() {
                   {event.desc}
                 </p>
               </div>
-              
+
               <div className="mt-6 pt-4 border-t border-slate-100">
                 <a
                   href="#booking"

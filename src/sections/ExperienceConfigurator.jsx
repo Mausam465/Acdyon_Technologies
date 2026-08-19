@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Sun, Wind, Music, Eye } from 'lucide-react'
+import { Sun, Wind, Music, Eye, Check, Loader2 } from 'lucide-react'
 
 function ExperienceConfigurator() {
   const [visualMode, setVisualMode] = useState('Deep Forest')
@@ -7,6 +7,18 @@ function ExperienceConfigurator() {
   const [scent, setScent] = useState(50)
   const [lighting, setLighting] = useState(65)
   const [sound, setSound] = useState(40)
+  
+  const [isSaving, setIsSaving] = useState(false)
+  const [isSaved, setIsSaved] = useState(false)
+
+  const handleSave = () => {
+    setIsSaving(true)
+    setTimeout(() => {
+      setIsSaving(false)
+      setIsSaved(true)
+      setTimeout(() => setIsSaved(false), 3000)
+    }, 1200)
+  }
 
   const presetThemes = [
     { name: 'Deep Forest', icon: '🌲', l: 50, b: 40, s: 75, sd: 50 },
@@ -159,100 +171,144 @@ function ExperienceConfigurator() {
             </div>
 
             <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-              <button className="btn-premium w-full text-center py-3 text-[10px] uppercase tracking-widest text-white bg-vista-blue hover:bg-vista-blueDark rounded-xl shadow-sm transition-all duration-300">
-                Save Configuration
+              <button 
+                onClick={handleSave}
+                disabled={isSaving || isSaved}
+                className={`btn-premium w-full flex items-center justify-center gap-2 py-3 text-[10px] uppercase tracking-widest text-white rounded-xl shadow-sm transition-all duration-300 ${
+                  isSaved 
+                    ? 'bg-emerald-500 hover:bg-emerald-600' 
+                    : 'bg-vista-blue hover:bg-vista-blueDark'
+                }`}
+              >
+                {isSaving ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Saving...
+                  </>
+                ) : isSaved ? (
+                  <>
+                    <Check className="w-4 h-4" />
+                    Configuration Saved
+                  </>
+                ) : (
+                  'Save Configuration'
+                )}
               </button>
             </div>
           </div>
 
           {/* Room Simulation Visual Display */}
-          <div className="w-full md:w-2/5 rounded-[2rem] border border-slate-200/60 bg-[#040812] overflow-hidden flex flex-col justify-between relative shadow-inner p-4 min-h-[300px]">
+          <div className="w-full md:w-2/5 rounded-[2.5rem] border border-slate-800 bg-[#0A0F1C] overflow-hidden flex flex-col justify-between relative shadow-2xl p-5 min-h-[350px]">
+            {/* Ambient Background Grid */}
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEgMWgyMHYyMEgxVjF6IiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==')] opacity-50 z-0 pointer-events-none"></div>
+
             {/* Live Indicator */}
-            <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
-              <span className="font-technical text-[8px] uppercase tracking-wider text-slate-200 font-bold">
+            <div className="absolute top-5 left-5 z-10 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 shadow-lg">
+              <div className="relative flex items-center justify-center">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping absolute"></span>
+                <span className="w-2 h-2 rounded-full bg-emerald-500 relative"></span>
+              </div>
+              <span className="font-technical text-[9px] uppercase tracking-widest text-slate-200 font-bold ml-1">
                 Simulation Active
               </span>
             </div>
 
             {/* Dynamic Room SVG Renderer */}
-            <div className="w-full flex-grow flex items-center justify-center pt-8">
-              <svg viewBox="0 0 200 220" className="w-full max-h-[220px]">
+            <div className="w-full flex-grow flex items-center justify-center pt-8 relative z-10">
+              <svg viewBox="0 0 200 220" className="w-full max-h-[240px]">
+                <defs>
+                  <linearGradient id="beamGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="currentColor" stopOpacity="0.5" />
+                    <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+                  </linearGradient>
+                  <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="currentColor" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+                  </radialGradient>
+                </defs>
+
                 {/* Dynamic environment lighting glow */}
                 <circle
                   cx="100"
                   cy="90"
-                  r={30 + lighting * 0.4}
-                  fill={
-                    visualMode === 'Deep Forest' ? '#0D9488' :
-                    visualMode === 'Celestial Twilight' ? '#4F46E5' :
-                    visualMode === 'Tropical Shore' ? '#06B6D4' : '#F97316'
+                  r={30 + lighting * 0.5}
+                  fill="url(#glowGrad)"
+                  color={
+                    visualMode === 'Deep Forest' ? '#10B981' :
+                    visualMode === 'Celestial Twilight' ? '#6366F1' :
+                    visualMode === 'Tropical Shore' ? '#0EA5E9' : '#F59E0B'
                   }
-                  filter="blur(15px)"
-                  opacity={lighting / 180}
-                  className="transition-all duration-500"
+                  opacity={lighting / 120}
+                  className="transition-all duration-700"
                 />
                 
                 {/* Ray beams from top */}
                 <polygon
-                  points="100,0 20,220 180,220"
-                  fill={
-                    visualMode === 'Deep Forest' ? '#0D9488' :
-                    visualMode === 'Celestial Twilight' ? '#4F46E5' :
-                    visualMode === 'Tropical Shore' ? '#06B6D4' : '#F97316'
+                  points="100,-20 10,220 190,220"
+                  fill="url(#beamGrad)"
+                  color={
+                    visualMode === 'Deep Forest' ? '#10B981' :
+                    visualMode === 'Celestial Twilight' ? '#6366F1' :
+                    visualMode === 'Tropical Shore' ? '#0EA5E9' : '#F59E0B'
                   }
-                  opacity={lighting / 600}
-                  className="transition-all duration-500"
+                  opacity={lighting / 80}
+                  className="transition-all duration-700 mix-blend-screen"
                 />
 
                 {/* Grid wireframe matching VISTA environment concept */}
-                <rect x="25" y="25" width="150" height="135" rx="8" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
-                <line x1="25" y1="92" x2="175" y2="92" stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
-                <line x1="100" y1="25" x2="100" y2="160" stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
+                <rect x="25" y="25" width="150" height="150" rx="12" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+                <rect x="15" y="15" width="170" height="170" rx="16" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
+                <line x1="25" y1="100" x2="175" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
+                <line x1="100" y1="25" x2="100" y2="175" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
 
                 {/* Lounge Seat silhouette */}
-                <path d="M 55 130 C 75 130, 85 118, 105 105 C 120 95, 135 90, 145 90" fill="none" stroke="white" strokeWidth="2.5" opacity="0.65" />
-                <line x1="75" y1="130" x2="75" y2="150" stroke="white" strokeWidth="1.5" opacity="0.5" />
-                <line x1="125" y1="100" x2="125" y2="150" stroke="white" strokeWidth="1.5" opacity="0.5" />
+                <path d="M 50 140 C 75 140, 85 125, 105 110 C 120 100, 140 95, 150 95" fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth="3" strokeLinecap="round" />
+                <line x1="75" y1="140" x2="75" y2="165" stroke="rgba(255,255,255,0.6)" strokeWidth="2" strokeLinecap="round" />
+                <line x1="125" y1="105" x2="125" y2="165" stroke="rgba(255,255,255,0.6)" strokeWidth="2" strokeLinecap="round" />
 
                 {/* Dynamic Breeze Wind Wave Lines */}
-                {breeze > 10 && (
+                {breeze > 5 && (
                   <>
-                    <path d="M 30 70 Q 60 62 95 70 T 160 70" fill="none" stroke="rgba(20, 184, 166, 0.35)" strokeWidth="1" strokeDasharray="4,4">
-                      <animate attributeName="stroke-dashoffset" values="0;-40" dur={`${(110 - breeze) * 0.05}s`} repeatCount="indefinite" />
+                    <path d="M 20 75 Q 60 65 100 75 T 180 75" fill="none" stroke="#2DD4BF" strokeWidth="1.5" strokeDasharray="6,6" opacity="0.6">
+                      <animate attributeName="stroke-dashoffset" values="0;-60" dur={`${120 / breeze}s`} repeatCount="indefinite" />
                     </path>
-                    <path d="M 40 98 Q 70 90 105 98 T 170 98" fill="none" stroke="rgba(20, 184, 166, 0.35)" strokeWidth="1" strokeDasharray="4,4">
-                      <animate attributeName="stroke-dashoffset" values="0;-40" dur={`${(110 - breeze) * 0.04}s`} repeatCount="indefinite" />
+                    <path d="M 30 110 Q 70 100 110 110 T 190 110" fill="none" stroke="#2DD4BF" strokeWidth="1" strokeDasharray="4,8" opacity="0.4">
+                      <animate attributeName="stroke-dashoffset" values="0;-60" dur={`${150 / breeze}s`} repeatCount="indefinite" />
                     </path>
                   </>
                 )}
 
                 {/* Soundwaves pulsing outward */}
-                {sound > 10 && (
+                {sound > 5 && (
                   <>
-                    <circle cx="25" cy="92" r="5" fill="none" stroke="rgba(99, 102, 241, 0.4)" strokeWidth="0.8">
-                      <animate attributeName="r" values={`5;${5 + sound * 0.45}`} dur="2s" repeatCount="indefinite" />
-                      <animate attributeName="opacity" values="0.7;0" dur="2s" repeatCount="indefinite" />
+                    <circle cx="25" cy="100" r="8" fill="none" stroke="#818CF8" strokeWidth="1.5">
+                      <animate attributeName="r" values={`8;${8 + sound * 0.6}`} dur="1.5s" repeatCount="indefinite" />
+                      <animate attributeName="opacity" values="0.8;0" dur="1.5s" repeatCount="indefinite" />
                     </circle>
-                    <circle cx="175" cy="92" r="5" fill="none" stroke="rgba(99, 102, 241, 0.4)" strokeWidth="0.8">
-                      <animate attributeName="r" values={`5;${5 + sound * 0.45}`} dur="2s" repeatCount="indefinite" />
-                      <animate attributeName="opacity" values="0.7;0" dur="2s" repeatCount="indefinite" />
+                    <circle cx="175" cy="100" r="8" fill="none" stroke="#818CF8" strokeWidth="1.5">
+                      <animate attributeName="r" values={`8;${8 + sound * 0.6}`} dur="1.5s" repeatCount="indefinite" />
+                      <animate attributeName="opacity" values="0.8;0" dur="1.5s" repeatCount="indefinite" />
                     </circle>
                   </>
                 )}
 
                 {/* Scent Aroma dots floating */}
-                {scent > 10 && (
+                {scent > 5 && (
                   <>
-                    <circle cx="75" cy="140" r="2" fill="#EC4899" opacity="0.5">
-                      <animate attributeName="cy" values="140;40" dur="3.5s" repeatCount="indefinite" />
-                      <animate attributeName="cx" values="75;85;75" dur="3.5s" repeatCount="indefinite" />
-                      <animate attributeName="opacity" values="0.5;0" dur="3.5s" repeatCount="indefinite" />
+                    <circle cx="85" cy="150" r="3" fill="#F472B6" opacity="0.7" filter="blur(1px)">
+                      <animate attributeName="cy" values="150;40" dur="4s" repeatCount="indefinite" />
+                      <animate attributeName="cx" values="85;100;85" dur="4s" repeatCount="indefinite" />
+                      <animate attributeName="opacity" values="0.7;0" dur="4s" repeatCount="indefinite" />
                     </circle>
-                    <circle cx="125" cy="130" r="2.5" fill="#EC4899" opacity="0.5">
-                      <animate attributeName="cy" values="130;30" dur="2.8s" repeatCount="indefinite" />
-                      <animate attributeName="cx" values="125;115;125" dur="2.8s" repeatCount="indefinite" />
-                      <animate attributeName="opacity" values="0.5;0" dur="2.8s" repeatCount="indefinite" />
+                    <circle cx="135" cy="140" r="2.5" fill="#F472B6" opacity="0.7" filter="blur(1px)">
+                      <animate attributeName="cy" values="140;30" dur="3s" repeatCount="indefinite" />
+                      <animate attributeName="cx" values="135;120;135" dur="3s" repeatCount="indefinite" />
+                      <animate attributeName="opacity" values="0.7;0" dur="3s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="110" cy="160" r="2" fill="#F472B6" opacity="0.5" filter="blur(0.5px)">
+                      <animate attributeName="cy" values="160;50" dur="3.5s" repeatCount="indefinite" />
+                      <animate attributeName="cx" values="110;95;110" dur="3.5s" repeatCount="indefinite" />
+                      <animate attributeName="opacity" values="0.5;0" dur="3.5s" repeatCount="indefinite" />
                     </circle>
                   </>
                 )}
@@ -260,9 +316,9 @@ function ExperienceConfigurator() {
             </div>
 
             {/* Technical readout status info */}
-            <div className="border-t border-white/10 pt-3 mt-2 flex items-center justify-between text-[8px] font-technical uppercase tracking-wider text-slate-400">
-              <span>Suite: 03-Canopy</span>
-              <span>Aroma: active</span>
+            <div className="relative z-10 bg-black/40 backdrop-blur-md rounded-xl p-3 border border-white/10 flex items-center justify-between text-[9px] font-technical uppercase tracking-widest text-slate-300 shadow-inner mt-2">
+              <span className="flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-slate-400"></div> Suite: 03-Canopy</span>
+              <span className="flex items-center gap-1.5 text-vista-blue">Sys: Active <div className="w-1.5 h-1.5 rounded-full bg-vista-blue animate-pulse"></div></span>
             </div>
           </div>
           
