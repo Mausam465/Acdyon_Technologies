@@ -1,18 +1,40 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Thermometer, Wind, Music, Eye, Droplets } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 function RoomExperience() {
-  // Hardcoded data representing "Deep Forest" for now
-  const activeRoom = {
-    title: 'Deep Forest',
-    description: 'Deep green pine forest canopy, woodland birds singing, earthy damp soil scent, and light moisture mist.',
-    image: 'https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=80',
-    telemetry: {
-      climate: '18°C, Cool & Misty',
-      scent: 'Pine & Petrichor',
-      audio: 'Ambient Surround'
+  const [currentRoomIndex, setCurrentRoomIndex] = useState(0)
+
+  // Hardcoded preview rooms to cycle through
+  const previewRooms = [
+    {
+      title: 'Deep Forest',
+      description: 'Deep green pine forest canopy, woodland birds singing, earthy damp soil scent, and light moisture mist.',
+      image: 'https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=80',
+      telemetry: { climate: '18°C, Cool & Misty', scent: 'Pine & Petrichor', audio: 'Ambient Surround' }
+    },
+    {
+      title: 'Korea Spring',
+      description: 'Soft pink cherry blossom petals falling gently around you with a mild spring breeze and sweet floral scent.',
+      image: 'https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=1200&q=80',
+      telemetry: { climate: '22°C, Spring Breeze', scent: 'Cherry Blossom & Greenery', audio: 'Gentle Wind & Strings' }
+    },
+    {
+      title: 'Manali Mountains',
+      description: 'Crisp alpine winds, surrounding snowy peak projections, and panoramic soundscapes at the top of the Himalayas.',
+      image: 'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=1200&q=80',
+      telemetry: { climate: '5°C, Cold & Fresh', scent: 'Pine & Crisp Ozone', audio: 'Howling Wind' }
     }
-  }
+  ]
+
+  const activeRoom = previewRooms[currentRoomIndex]
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentRoomIndex((prev) => (prev + 1) % previewRooms.length)
+    }, 4500)
+    return () => clearInterval(timer)
+  }, [previewRooms.length])
 
   return (
     <section id="room-preview" className="w-full py-24 px-6 max-w-7xl mx-auto border-b border-slate-200/60">
@@ -36,18 +58,22 @@ function RoomExperience() {
       <div className="w-full h-[600px] sm:h-[700px] rounded-[2.5rem] overflow-hidden relative shadow-[0_30px_60px_rgba(0,0,0,0.12)] border border-slate-200/50 bg-[#020408]">
         
         {/* The Environment Projection (Curved Wall Effect) */}
-        <div className="absolute inset-0">
-          <img 
-            src={activeRoom.image} 
-            alt={activeRoom.title} 
-            className="w-full h-full object-cover transition-all duration-1000 scale-105"
-            style={{
-              clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', // Will add perspective if needed
-            }}
-          />
+        <div className="absolute inset-0 bg-[#020408]">
+          <AnimatePresence>
+            <motion.img 
+              key={currentRoomIndex}
+              src={activeRoom.image} 
+              alt={`${activeRoom.title} view`} 
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.5, ease: 'easeInOut' }}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </AnimatePresence>
           {/* Gradients to simulate physical room depth and corners */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#020408] via-transparent to-[#020408]/40 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#020408]/60 via-transparent to-[#020408]/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#020408] via-transparent to-[#020408]/40 mix-blend-multiply pointer-events-none z-0" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#020408]/60 via-transparent to-[#020408]/60 pointer-events-none z-0" />
         </div>
 
         {/* Top Left: Live Status Indicator */}
