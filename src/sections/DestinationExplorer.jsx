@@ -48,8 +48,8 @@ function DestinationExplorer() {
 
   const filteredDestinations = destinations.filter(dest => {
     const matchesCategory = selectedCat === 'All' || dest.category === selectedCat
-    const matchesSearch = dest.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          dest.location.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchesSearch = dest.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      dest.location.toLowerCase().includes(searchQuery.toLowerCase())
     return matchesCategory && matchesSearch
   })
 
@@ -64,7 +64,7 @@ function DestinationExplorer() {
             Immersive Destinations
           </h2>
         </div>
-        
+
         {/* Search & Tabs */}
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
           {/* Search bar */}
@@ -78,18 +78,17 @@ function DestinationExplorer() {
               className="w-full pl-10 pr-4 py-2 text-xs rounded-full border border-slate-200 bg-white/70 backdrop-blur focus:outline-none focus:border-vista-blue focus:ring-1 focus:ring-vista-blue/20 transition-all font-sans text-slate-700"
             />
           </div>
-          
+
           {/* Category Tabs */}
           <div className="flex items-center gap-1.5 p-1 rounded-full border border-slate-200 bg-white/45 backdrop-blur w-full sm:w-auto overflow-x-auto">
             {categories.map(cat => (
               <button
                 key={cat}
                 onClick={() => setSelectedCat(cat)}
-                className={`px-4 py-1.5 rounded-full text-[10px] font-technical uppercase font-bold tracking-wider transition-all duration-300 ${
-                  selectedCat === cat 
-                    ? 'bg-[#061022] text-white' 
+                className={`px-4 py-1.5 rounded-full text-[10px] font-technical uppercase font-bold tracking-wider transition-all duration-300 ${selectedCat === cat
+                    ? 'bg-[#061022] text-white'
                     : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100/50'
-                }`}
+                  }`}
               >
                 {cat}
               </button>
@@ -133,11 +132,7 @@ function DestinationExplorer() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between border-t border-slate-100 pt-4 mt-5">
-                <div>
-                  <span className="text-[9px] font-technical uppercase text-slate-400 font-bold block">Rate</span>
-                  <span className="text-sm font-semibold text-slate-800 font-technical">{dest.price}</span>
-                </div>
+              <div className="flex items-center justify-end border-t border-slate-100 pt-4 mt-5">
                 <a
                   href="#booking"
                   className="btn-premium px-4 py-2 text-[9px] uppercase tracking-widest text-[#0052CC] border border-blue-200 bg-blue-50 rounded-full hover:bg-vista-blue hover:text-white hover:border-transparent transition-all duration-300"
