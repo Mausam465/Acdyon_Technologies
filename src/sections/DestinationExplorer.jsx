@@ -57,9 +57,7 @@ function DestinationExplorer() {
     <section id="explorer" className="w-full py-24 px-6 max-w-7xl mx-auto border-b border-slate-200/60">
       <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
         <div>
-          <span className="font-technical text-[10px] uppercase tracking-[0.2em] text-slate-400 font-semibold">
-            Visual Directory
-          </span>
+
           <h2 className="text-3xl md:text-4xl font-display font-bold text-[#061022] mt-2">
             Immersive Destinations
           </h2>
@@ -86,8 +84,8 @@ function DestinationExplorer() {
                 key={cat}
                 onClick={() => setSelectedCat(cat)}
                 className={`px-4 py-1.5 rounded-full text-[10px] font-technical uppercase font-bold tracking-wider transition-all duration-300 ${selectedCat === cat
-                    ? 'bg-[#061022] text-white'
-                    : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100/50'
+                  ? 'bg-[#061022] text-white'
+                  : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100/50'
                   }`}
               >
                 {cat}
@@ -111,10 +109,7 @@ function DestinationExplorer() {
                 alt={dest.title}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute top-4 right-4 px-2.5 py-1 rounded-lg bg-white/95 backdrop-blur-md border border-slate-100 flex items-center gap-1 shadow-sm">
-                <Star className="w-3 h-3 text-amber-500 fill-amber-500" />
-                <span className="font-technical text-[9px] font-bold text-slate-800">{dest.rating}</span>
-              </div>
+
               <span className="absolute bottom-4 left-4 px-2 py-0.5 rounded text-[8px] font-technical uppercase font-bold tracking-widest bg-white/90 text-vista-blue border border-slate-100">
                 {dest.category}
               </span>
@@ -126,7 +121,7 @@ function DestinationExplorer() {
                 <h3 className="font-display font-semibold text-base text-[#061022] leading-snug group-hover:text-vista-blue transition-colors">
                   {dest.title}
                 </h3>
-                <div className="flex items-center gap-1 text-slate-500 text-xs mt-1.5 font-sans">
+                <div className="flex items-center gap-1 text-black text-sm mt-1.5 font-sans">
                   <MapPin className="w-3.5 h-3.5 shrink-0" />
                   <span>{dest.location}</span>
                 </div>
@@ -135,7 +130,7 @@ function DestinationExplorer() {
               <div className="flex items-center justify-end border-t border-slate-100 pt-4 mt-5">
                 <a
                   href="#booking"
-                  className="btn-premium px-4 py-2 text-[9px] uppercase tracking-widest text-[#0052CC] border border-blue-200 bg-blue-50 rounded-full hover:bg-vista-blue hover:text-white hover:border-transparent transition-all duration-300"
+                  className="btn-premium px-4 py-2 text-[12px] uppercase tracking-widest text-[#0052CC] border border-blue-200 bg-blue-50 rounded-full hover:bg-vista-blue hover:text-white hover:border-transparent transition-all duration-300"
                 >
                   Reserve Suite
                 </a>
