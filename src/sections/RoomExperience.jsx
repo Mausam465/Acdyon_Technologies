@@ -73,7 +73,6 @@ function RoomExperience() {
           {/* Gradients to simulate physical room depth and corners */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#020408] via-transparent to-[#020408]/40 mix-blend-multiply pointer-events-none z-0" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#020408]/60 via-transparent to-[#020408]/60 pointer-events-none z-0" />
-        </div>
 
         {/* Top Left: Live Status Indicator */}
         <div className="absolute top-4 md:top-6 left-4 md:left-6 z-10 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 shadow-lg">
