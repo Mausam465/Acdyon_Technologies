@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from './sections/Navbar'
 import Hero from './sections/Hero'
+import About from './sections/About'
 import ExperienceCategories from './sections/ExperienceCategories'
 import DestinationExplorer from './sections/DestinationExplorer'
 import ExperienceConfigurator from './sections/ExperienceConfigurator'
@@ -17,6 +18,7 @@ function App() {
       <Navbar />
       <main className="flex-grow">
         <Hero />
+        <About />
         <ExperienceCategories />
         <DestinationExplorer />
         <ExperienceConfigurator />
