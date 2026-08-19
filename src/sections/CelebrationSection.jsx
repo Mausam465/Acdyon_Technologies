@@ -30,7 +30,7 @@ const celebrations = [
 
 function CelebrationSection() {
   return (
-    <section id="celebrations" className="w-full py-24 px-6 max-w-7xl mx-auto border-b border-slate-200/60">
+    <section id="celebrations" className="w-full py-16 md:py-24 px-4 md:px-6 max-w-7xl mx-auto border-b border-slate-200/60">
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
         <div>
           <span className="font-technical text-[10px] uppercase tracking-[0.2em] text-slate-400 font-semibold">

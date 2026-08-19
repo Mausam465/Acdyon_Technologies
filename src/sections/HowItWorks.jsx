@@ -455,7 +455,7 @@ function HowItWorks() {
   }
 
   return (
-    <section id="how-it-works" className="w-full py-20 px-6 max-w-7xl mx-auto border-b border-slate-200/60 scroll-mt-20 overflow-hidden">
+    <section id="how-it-works" className="w-full py-16 md:py-20 px-4 md:px-6 max-w-7xl mx-auto border-b border-slate-200/60 scroll-mt-20 overflow-hidden">
 
       {/* Centered Header */}
       <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">

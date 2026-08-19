@@ -42,11 +42,11 @@ function BookingSection() {
   const selectedDateObj = next7Days.find(d => d.fullStr === selectedDateStr);
 
   return (
-    <section id="booking" className="w-full py-24 px-6 max-w-7xl mx-auto border-b border-slate-200/60">
-      <div className="flex flex-col lg:flex-row gap-12 items-start">
+    <section id="booking" className="w-full py-16 md:py-24 px-4 md:px-6 max-w-7xl mx-auto border-b border-slate-200/60">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
 
         {/* Booking Info */}
-        <div className="w-full lg:w-5/12 flex flex-col space-y-12 sticky top-32">
+        <div className="w-full lg:w-5/12 flex flex-col space-y-8 lg:space-y-12 lg:sticky lg:top-32">
           <div className="space-y-4">
             <span className="font-technical text-[10px] uppercase tracking-[0.2em] text-slate-600 font-semibold block">
               Reservation System
@@ -75,10 +75,10 @@ function BookingSection() {
         </div>
 
         {/* Booking Form Card */}
-        <div className="w-full lg:w-7/12 p-8 md:p-10 rounded-[2.5rem] border border-slate-200/80 bg-white/80 backdrop-blur shadow-[0_15px_50px_rgba(0,0,0,0.03)] flex flex-col justify-center relative overflow-hidden min-h-[640px]">
+        <div className="w-full lg:w-7/12 p-5 sm:p-8 md:p-10 rounded-3xl md:rounded-[2.5rem] border border-slate-200/80 bg-white/80 backdrop-blur shadow-[0_15px_50px_rgba(0,0,0,0.03)] flex flex-col justify-center relative overflow-hidden min-h-[640px]">
 
           {!booked ? (
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
 
               {/* Select Suite */}
               <div className="space-y-3">
@@ -109,21 +109,21 @@ function BookingSection() {
                   </label>
                   <span className="text-[10px] font-technical uppercase text-vista-blue font-bold">{currentMonthYear}</span>
                 </div>
-                <div className="grid grid-cols-7 gap-2">
+                <div className="grid grid-cols-7 gap-1 sm:gap-2">
                   {next7Days.map((d) => (
                     <button
                       key={d.fullStr}
                       type="button"
                       onClick={() => setSelectedDateStr(d.fullStr)}
-                      className={`py-3 rounded-xl border text-center flex flex-col items-center justify-center transition-all duration-300 ${selectedDateStr === d.fullStr
+                      className={`py-2 sm:py-3 rounded-lg sm:rounded-xl border text-center flex flex-col items-center justify-center transition-all duration-300 ${selectedDateStr === d.fullStr
                         ? 'bg-[#061022] text-white border-[#061022] shadow-md transform -translate-y-0.5'
                         : 'border-slate-200 bg-white/60 text-slate-600 hover:bg-white hover:border-slate-300 hover:shadow-sm'
                         }`}
                     >
-                      <span className={`text-[9px] font-technical uppercase tracking-wider block ${selectedDateStr === d.fullStr ? 'text-slate-300' : 'text-slate-400'}`}>
+                      <span className={`text-[8px] sm:text-[9px] font-technical uppercase tracking-wider block ${selectedDateStr === d.fullStr ? 'text-slate-300' : 'text-slate-400'}`}>
                         {d.day}
                       </span>
-                      <span className="text-sm font-semibold font-technical mt-1">{d.num}</span>
+                      <span className="text-xs sm:text-sm font-semibold font-technical mt-0.5 sm:mt-1">{d.num}</span>
                     </button>
                   ))}
                 </div>
@@ -135,13 +135,13 @@ function BookingSection() {
                   <Clock className="w-4 h-4 text-slate-400" />
                   Available Time Slots
                 </label>
-                <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+                <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3">
                   {slots.map((slot) => (
                     <button
                       key={slot}
                       type="button"
                       onClick={() => setSelectedSlot(slot)}
-                      className={`py-2.5 rounded-lg border text-center text-[11px] font-technical font-semibold transition-all duration-300 ${selectedSlot === slot
+                      className={`py-2 sm:py-2.5 rounded-lg border text-center text-[10px] sm:text-[11px] font-technical font-semibold transition-all duration-300 ${selectedSlot === slot
                         ? 'border-vista-blue bg-blue-50 text-vista-blue shadow-sm ring-1 ring-vista-blue/50'
                         : 'border-slate-200 bg-white/60 text-slate-500 hover:bg-white hover:border-slate-300 hover:shadow-sm'
                         }`}

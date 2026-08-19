@@ -37,7 +37,7 @@ function About() {
   const [hoveredStep, setHoveredStep] = useState(null)
 
   return (
-    <section id="about" className="w-full py-20 px-6 max-w-7xl mx-auto border-b border-slate-200/60 scroll-mt-20">
+    <section id="about" className="w-full py-16 md:py-20 px-4 md:px-6 max-w-7xl mx-auto border-b border-slate-200/60 scroll-mt-20">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
         {/* Left Column: Descriptive Content & Step List */}

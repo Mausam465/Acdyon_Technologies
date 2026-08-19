@@ -36,8 +36,8 @@ function ExperienceConfigurator() {
   }
 
   return (
-    <section id="configurator" className="w-full py-24 px-6 max-w-7xl mx-auto border-b border-slate-200/60">
-      <div className="flex flex-col lg:flex-row gap-12 items-center">
+    <section id="configurator" className="w-full py-16 md:py-24 px-4 md:px-6 max-w-7xl mx-auto border-b border-slate-200/60">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
         
         {/* Left Intro Panel */}
         <div className="w-full lg:w-5/12 space-y-6">
@@ -77,7 +77,7 @@ function ExperienceConfigurator() {
         </div>
 
         {/* Right Sliders Config Panel */}
-        <div className="w-full lg:w-7/12 p-8 md:p-10 rounded-[2.5rem] border border-slate-200/80 bg-white/80 backdrop-blur shadow-[0_15px_50px_rgba(0,0,0,0.03)] flex flex-col md:flex-row gap-8 relative overflow-hidden">
+        <div className="w-full lg:w-7/12 p-5 sm:p-8 md:p-10 rounded-3xl md:rounded-[2.5rem] border border-slate-200/80 bg-white/80 backdrop-blur shadow-[0_15px_50px_rgba(0,0,0,0.03)] flex flex-col md:flex-row gap-6 md:gap-8 relative overflow-hidden">
           
           {/* Sliders Input Column */}
           <div className="w-full md:w-3/5 flex flex-col gap-6 justify-between">
@@ -198,7 +198,7 @@ function ExperienceConfigurator() {
           </div>
 
           {/* Room Simulation Visual Display */}
-          <div className="w-full md:w-2/5 rounded-[2.5rem] border border-slate-800 bg-[#0A0F1C] overflow-hidden flex flex-col justify-between relative shadow-2xl p-5 min-h-[350px]">
+          <div className="w-full md:w-2/5 rounded-2xl md:rounded-[2.5rem] border border-slate-800 bg-[#0A0F1C] overflow-hidden flex flex-col justify-between relative shadow-2xl p-4 md:p-5 min-h-[300px] md:min-h-[350px]">
             {/* Ambient Background Grid */}
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEgMWgyMHYyMEgxVjF6IiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==')] opacity-50 z-0 pointer-events-none"></div>
 

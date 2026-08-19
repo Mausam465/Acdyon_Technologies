@@ -81,7 +81,7 @@ function ExperienceCategories() {
   const activeItems = data[activeTab]
 
   return (
-    <section id="categories" className="w-full pt-10 pb-24 px-6 max-w-7xl mx-auto border-b border-slate-200/60 overflow-hidden">
+    <section id="categories" className="w-full pt-10 pb-16 md:pb-24 px-4 md:px-6 max-w-7xl mx-auto border-b border-slate-200/60 overflow-hidden">
 
       {/* Header with Interactive Tabs */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">

@@ -13,9 +13,9 @@ function FinalCTA() {
   }
 
   return (
-    <section id="cta" className="w-full py-28 px-6 max-w-7xl mx-auto flex justify-center">
+    <section id="cta" className="w-full py-20 md:py-28 px-4 md:px-6 max-w-7xl mx-auto flex justify-center">
       <div className="w-full max-w-5xl rounded-[3rem] border border-blue-100 bg-gradient-to-tr from-[#EAF3FC] via-white to-[#E4F0FD] p-10 md:p-16 text-center flex flex-col items-center justify-center space-y-6 shadow-[0_20px_50px_rgba(0,82,204,0.04)] relative overflow-hidden">
-        
+
         {/* Glow elements */}
         <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-500/10 rounded-full blur-2xl"></div>
         <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-teal-500/10 rounded-full blur-2xl"></div>
@@ -23,12 +23,12 @@ function FinalCTA() {
         <span className="font-technical text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold block relative z-10 animate-pulse">
           Reserve Your Slot
         </span>
-        
+
         <h2 className="text-3xl md:text-5xl font-display font-bold text-[#061022] leading-tight max-w-2xl relative z-10">
           Ready to Step Into a <span className="theme-double-underline">New World?</span>
         </h2>
-        
-        <p className="text-slate-600 text-xs md:text-sm max-w-lg mx-auto font-sans leading-relaxed relative z-10">
+
+        <p className="text-black text-sm md:text-sm max-w-lg mx-auto font-sans leading-relaxed relative z-10">
           Experience sensory chambers engineered to calm the mind or ignite the imagination. Book your visit or sign up for exclusive preview slots.
         </p>
 

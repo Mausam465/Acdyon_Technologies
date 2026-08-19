@@ -44,8 +44,8 @@ function Hero() {
 
         {/* Hero Header Content */}
         <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center space-y-4 relative z-10 pt-6 sm:pt-10">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold leading-[1.15] tracking-tight text-[#061022] mt-4 sm:mt-5">
-            Don't just visit a place. <br />
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-display font-bold leading-[1.15] tracking-tight text-[#061022] mt-4 sm:mt-5">
+            Don't just visit a place. <br className="hidden sm:block" />
             <span className="text-vista-blue">Experience it.</span>
           </h1>
 
@@ -63,14 +63,14 @@ function Hero() {
           </svg>
 
           {/* Description */}
-          <p className="max-w-4xl text-lg sm:text-xl md:text-2xl text-black font-sans leading-relaxed mt-3 sm:mt-4 font-bold">
+          <p className="max-w-4xl text-base sm:text-xl md:text-2xl text-black font-sans leading-relaxed mt-3 sm:mt-4 font-bold px-4">
             VISTA transforms specially designed rooms into immersive worlds through visuals, sound, lighting, climate, and scent.
           </p>
 
         </div>
 
         {/* Parallax Image Overlay Stage */}
-        <div className="relative w-full max-w-6xl mx-auto h-[450px] sm:h-[650px] mt-6 sm:mt-10 rounded-[2.5rem] overflow-hidden border border-slate-200/80 bg-white shadow-[0_25px_60px_rgba(0,0,0,0.05)] z-20">
+        <div className="relative w-full max-w-6xl mx-auto h-[400px] sm:h-[650px] mt-6 sm:mt-10 rounded-3xl sm:rounded-[2.5rem] overflow-hidden border border-slate-200/80 bg-white shadow-[0_25px_60px_rgba(0,0,0,0.05)] z-20">
 
           {/* Base Layer 1: Pine Forest */}
           <div className="absolute inset-0 w-full h-full">
@@ -83,11 +83,11 @@ function Hero() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#061022]/70 via-[#061022]/10 to-transparent"></div>
 
             {/* Info details floating */}
-            <div className="absolute bottom-6 left-6 right-6 sm:bottom-10 sm:left-10 text-left text-white max-w-lg space-y-2">
-              <span className="px-2.5 py-1 rounded text-[8px] font-technical uppercase font-bold tracking-widest bg-teal-500 text-white">
+            <div className="absolute bottom-5 left-5 right-5 sm:bottom-10 sm:left-10 text-left text-white max-w-lg space-y-1.5 sm:space-y-2">
+              <span className="px-2 py-1 rounded text-[7px] sm:text-[8px] font-technical uppercase font-bold tracking-widest bg-teal-500 text-white">
                 NATURE RETREAT
               </span>
-              <h3 className="font-display font-bold text-xl sm:text-3xl">
+              <h3 className="font-display font-bold text-lg sm:text-3xl">
                 Serene Pine Forest Chamber
               </h3>
               <p className="text-xs sm:text-sm text-slate-200 font-sans leading-relaxed">
@@ -110,11 +110,11 @@ function Hero() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#061022]/70 via-[#061022]/10 to-transparent"></div>
 
             {/* Info details floating */}
-            <div className="absolute bottom-6 left-6 right-6 sm:bottom-10 sm:left-10 text-left text-white max-w-lg space-y-2">
-              <span className="px-2.5 py-1 rounded text-[8px] font-technical uppercase font-bold tracking-widest bg-indigo-500 text-white">
+            <div className="absolute bottom-5 left-5 right-5 sm:bottom-10 sm:left-10 text-left text-white max-w-lg space-y-1.5 sm:space-y-2">
+              <span className="px-2 py-1 rounded text-[7px] sm:text-[8px] font-technical uppercase font-bold tracking-widest bg-indigo-500 text-white">
                 ROMANCE SUITE
               </span>
-              <h3 className="font-display font-bold text-xl sm:text-3xl">
+              <h3 className="font-display font-bold text-lg sm:text-3xl">
                 Cosmic Date Night
               </h3>
               <p className="text-xs sm:text-sm text-slate-200 font-sans leading-relaxed">
@@ -137,11 +137,11 @@ function Hero() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#061022]/75 via-[#061022]/15 to-transparent"></div>
 
             {/* Info details floating */}
-            <div className="absolute bottom-6 left-6 right-6 sm:bottom-10 sm:left-10 text-left text-white max-w-lg space-y-2">
-              <span className="px-2.5 py-1 rounded text-[8px] font-technical uppercase font-bold tracking-widest bg-purple-500 text-white">
+            <div className="absolute bottom-5 left-5 right-5 sm:bottom-10 sm:left-10 text-left text-white max-w-lg space-y-1.5 sm:space-y-2">
+              <span className="px-2 py-1 rounded text-[7px] sm:text-[8px] font-technical uppercase font-bold tracking-widest bg-purple-500 text-white">
                 CELEBRATION SUITE
               </span>
-              <h3 className="font-display font-bold text-xl sm:text-3xl">
+              <h3 className="font-display font-bold text-lg sm:text-3xl">
                 Holographic Birthday Chamber
               </h3>
               <p className="text-xs sm:text-sm text-slate-200 font-sans leading-relaxed">
@@ -164,11 +164,11 @@ function Hero() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#061022]/70 via-[#061022]/10 to-transparent"></div>
 
             {/* Info details floating */}
-            <div className="absolute bottom-6 left-6 right-6 sm:bottom-10 sm:left-10 text-left text-white max-w-lg space-y-2">
-              <span className="px-2.5 py-1 rounded text-[8px] font-technical uppercase font-bold tracking-widest bg-amber-500 text-white">
+            <div className="absolute bottom-5 left-5 right-5 sm:bottom-10 sm:left-10 text-left text-white max-w-lg space-y-1.5 sm:space-y-2">
+              <span className="px-2 py-1 rounded text-[7px] sm:text-[8px] font-technical uppercase font-bold tracking-widest bg-amber-500 text-white">
                 MILESTONES
               </span>
-              <h3 className="font-display font-bold text-xl sm:text-3xl">
+              <h3 className="font-display font-bold text-lg sm:text-3xl">
                 Golden Anniversary
               </h3>
               <p className="text-xs sm:text-sm text-slate-200 font-sans leading-relaxed">
@@ -191,11 +191,11 @@ function Hero() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#061022]/70 via-[#061022]/10 to-transparent"></div>
 
             {/* Info details floating */}
-            <div className="absolute bottom-6 left-6 right-6 sm:bottom-10 sm:left-10 text-left text-white max-w-lg space-y-2">
-              <span className="px-2.5 py-1 rounded text-[8px] font-technical uppercase font-bold tracking-widest bg-emerald-500 text-white">
+            <div className="absolute bottom-5 left-5 right-5 sm:bottom-10 sm:left-10 text-left text-white max-w-lg space-y-1.5 sm:space-y-2">
+              <span className="px-2 py-1 rounded text-[7px] sm:text-[8px] font-technical uppercase font-bold tracking-widest bg-emerald-500 text-white">
                 REUNIONS
               </span>
-              <h3 className="font-display font-bold text-xl sm:text-3xl">
+              <h3 className="font-display font-bold text-lg sm:text-3xl">
                 Lounge Gathering Chamber
               </h3>
               <p className="text-xs sm:text-sm text-slate-200 font-sans leading-relaxed">

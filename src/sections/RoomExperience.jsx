@@ -34,7 +34,7 @@ function RoomExperience() {
   }, [previewRooms.length])
 
   return (
-    <section id="room-preview" className="w-full py-24 px-6 max-w-7xl mx-auto border-b border-slate-200/60">
+    <section id="room-preview" className="w-full py-16 md:py-24 px-4 md:px-6 max-w-7xl mx-auto border-b border-slate-200/60">
 
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
@@ -54,10 +54,10 @@ function RoomExperience() {
       </div>
 
       {/* The Physical Room Container */}
-      <div className="w-full h-[500px] sm:h-[550px] rounded-[2.5rem] overflow-hidden relative shadow-[0_30px_60px_rgba(0,0,0,0.12)] border border-slate-200/50 bg-[#020408]">
+      <div className="w-full flex flex-col md:block md:h-[550px] rounded-3xl md:rounded-[2.5rem] overflow-hidden relative shadow-[0_30px_60px_rgba(0,0,0,0.12)] border border-slate-200/50 bg-[#020408]">
 
         {/* The Environment Projection (Curved Wall Effect) */}
-        <div className="absolute inset-0 bg-[#020408]">
+        <div className="relative h-[260px] md:h-auto md:absolute md:inset-0 bg-[#020408]">
           <AnimatePresence>
             <motion.img
               key={currentRoomIndex}
@@ -76,21 +76,21 @@ function RoomExperience() {
         </div>
 
         {/* Top Left: Live Status Indicator */}
-        <div className="absolute top-6 left-6 z-10 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 shadow-lg">
+        <div className="absolute top-4 md:top-6 left-4 md:left-6 z-10 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 shadow-lg">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping absolute" />
           <span className="w-2 h-2 rounded-full bg-emerald-500 relative" />
-          <span className="font-technical text-[9px] uppercase tracking-[0.15em] text-white font-bold ml-1">
+          <span className="font-technical text-[8px] md:text-[9px] uppercase tracking-[0.15em] text-white font-bold ml-1">
             Chamber Active
           </span>
         </div>
 
-        {/* Top Right: Experience Mode Controls */}
-        <div className="absolute top-6 right-6 z-10 flex items-center gap-2 p-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 shadow-lg">
+        {/* Bottom Right on mobile / Top Right on desktop: Experience Mode Controls */}
+        <div className="absolute bottom-4 right-4 md:bottom-auto md:top-6 md:right-6 z-10 flex overflow-x-auto max-w-[90%] md:max-w-none scrollbar-hide items-center gap-1 md:gap-2 p-1 md:p-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 shadow-lg">
           {activeRoom.envModes.map((mode) => (
             <button
               key={mode}
               onClick={() => setActiveMode(mode)}
-              className={`px-4 py-1.5 rounded-full text-[10px] font-technical uppercase font-bold tracking-wider transition-all duration-300 ${
+              className={`px-3 md:px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-technical uppercase font-bold tracking-wider transition-all duration-300 whitespace-nowrap ${
                 activeMode === mode ? 'bg-vista-blue text-white' : 'text-slate-300 hover:text-white hover:bg-white/10'
               }`}
             >
@@ -98,23 +98,25 @@ function RoomExperience() {
             </button>
           ))}
         </div>
+        
+        </div> {/* End of Image Container */}
 
         {/* Bottom Overlays Container */}
-        <div className="absolute bottom-6 left-6 right-6 flex flex-col md:flex-row gap-4 items-end justify-between z-10">
+        <div className="relative p-5 md:p-0 md:absolute md:bottom-6 md:left-6 md:right-6 flex flex-col md:flex-row gap-4 items-stretch md:items-end justify-between z-10 bg-[#020408] md:bg-transparent">
 
           {/* Bottom Left: Destination Info */}
-          <div className="w-full md:w-5/12 p-6 rounded-3xl bg-black/40 backdrop-blur-md border border-white/10 shadow-2xl">
-            <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mb-2">
+          <div className="w-full md:w-5/12 p-5 md:p-6 rounded-2xl md:rounded-3xl bg-white/5 md:bg-black/40 backdrop-blur-md border border-white/10 shadow-none md:shadow-2xl">
+            <h3 className="font-display text-xl sm:text-3xl font-bold text-white mb-2">
               {activeRoom.title}
             </h3>
-            <p className="text-sm font-sans text-slate-300 leading-relaxed">
+            <p className="text-xs md:text-sm font-sans text-slate-300 leading-relaxed">
               {activeRoom.description}
             </p>
           </div>
 
           {/* Bottom Right: Environment Telemetry */}
-          <div className="w-full md:w-auto p-6 rounded-3xl bg-black/40 backdrop-blur-md border border-white/10 shadow-2xl flex flex-col gap-4 min-w-[300px]">
-            <span className="font-technical text-[10px] uppercase tracking-widest text-slate-400 font-semibold border-b border-white/10 pb-2">
+          <div className="w-full md:w-auto p-5 md:p-6 rounded-2xl md:rounded-3xl bg-white/5 md:bg-black/40 backdrop-blur-md border border-white/10 shadow-none md:shadow-2xl flex flex-col gap-4 min-w-[280px] md:min-w-[300px]">
+            <span className="font-technical text-[9px] md:text-[10px] uppercase tracking-widest text-slate-400 font-semibold border-b border-white/10 pb-2">
               Environmental Systems
             </span>
 
